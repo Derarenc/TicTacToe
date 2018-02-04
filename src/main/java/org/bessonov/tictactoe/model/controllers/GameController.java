@@ -15,7 +15,7 @@ public class GameController {
         checker = new StandardWinChecker(game.getField());
     }
 
-    public List<Cell> checkWinSequence() {
+    private List<Cell> checkWinSequence() {
         if (game.getMoveList().peek() != null) {
             return checker.getWinSequence(game.getMoveList().peek());
         }

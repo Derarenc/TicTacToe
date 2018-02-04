@@ -6,7 +6,6 @@ import org.bessonov.tictactoe.model.sessions.GameSession;
 import org.bessonov.tictactoe.model.utils.StandardWinChecker;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class MinMaxStandardBot extends StandardBot {
     class EstimatedMove {
@@ -68,7 +67,7 @@ public class MinMaxStandardBot extends StandardBot {
         return move;
     }
 
-    public EstimatedMove minMax(Field field, LinkedList<Cell> emptyCells, Move lastMove, boolean botMove) {
+    private EstimatedMove minMax(Field field, LinkedList<Cell> emptyCells, Move lastMove, boolean botMove) {
         PlayerRole winner = lastMove != null ? winChecker.getWinner(lastMove) : null;
         if (winner != null) {
             return winner == botRole ? new EstimatedMove(1) : new EstimatedMove(-1);

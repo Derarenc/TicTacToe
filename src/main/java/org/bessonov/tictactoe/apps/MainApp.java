@@ -15,7 +15,7 @@ public class MainApp extends Application {
     private Stage primaryStage;
     private Parent root;
     private MainViewController mainViewController;
-    GameClient gameClient;
+    private GameClient gameClient;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -32,20 +32,20 @@ public class MainApp extends Application {
         }
     }
 
-    public void loadFxml() throws IOException {
+    private void loadFxml() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MainApp.class.getResource("/views/mainView.fxml"));
         root = loader.load();
-        mainViewController = (MainViewController) loader.getController();
+        mainViewController = loader.getController();
     }
 
-    public void initRoot() {
+    private void initRoot() {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    public void initMainController() {
+    private void initMainController() {
         gameClient = new GameClient();
         gameClient.setViewController(mainViewController);
         mainViewController.setGameClient(gameClient);
