@@ -21,6 +21,31 @@ public abstract class Game extends Thread {
         moveList = new LinkedList<>();
     }
 
+    @Override
+    public void run() {
+        while (gameState != GameState.INTERRUPTED && gameState != GameState.OVER) {
+            if (isInterrupted()) {
+                gameController.interrupt();
+            }
+            switch (gameState) {
+                case WAIT_TO_START:
+                    gameState = GameState.X_PLAYER_MOVE;
+
+                case X_PLAYER_MOVE:
+                    gameController.xPlayerMove();
+                    break;
+
+                case O_PLAYER_MOVE:
+                    gameController.oPlayerMove();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        gameController.gameOver();
+    }
+
     public GameController getGameController() {
         return gameController;
     }
